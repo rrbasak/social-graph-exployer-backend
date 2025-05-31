@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: connection-service
+
+  banner:
+    location: classpath:banner.txt
+    
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/connection_db
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+#graph:
+#  service:
+#     url :  http://GRAPH-SERVICE/api/v0/graph/sync
+
+server:
+  port : 9001
