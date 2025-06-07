@@ -389,7 +389,13 @@ public class ConnectionServiceImpl implements ConnectionService {
 		connectionRepository.deleteAllByUserId(userId);
 	}
 
+	
+	
 
+	public Optional<Connection> getConnectionBetweenUsers(UUID userId1, UUID userId2) {
+        return connectionRepository.findByRequesterIdAndReceiverId(userId1, userId2)
+                .or(() -> connectionRepository.findByRequesterIdAndReceiverId(userId2, userId1));
+    }
 
 
 

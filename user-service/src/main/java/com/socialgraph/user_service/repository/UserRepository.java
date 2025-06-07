@@ -16,8 +16,15 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 			+ "AND user_id != :currentUserId", nativeQuery = true)
 	List<User> searchUsersByName(@Param("query") String query, @Param("currentUserId") UUID userId);
 
-	@Query("SELECT u FROM User u WHERE " + "(LOWER(u.fname) LIKE LOWER(CONCAT('%', :name, '%')) OR "
-			+ "LOWER(u.lname) LIKE LOWER(CONCAT('%', :name, '%'))) AND " + "u.userId NOT IN :excludeIds")
-	List<User> searchUsersByNameExcludingIds(String name, List<UUID> excludeIds);
+	@Query("SELECT u FROM User u WHERE " +
+		       "(" +
+		       "LOWER(u.fname) LIKE LOWER(CONCAT('%', :name, '%')) OR " +
+		       "LOWER(u.lname) LIKE LOWER(CONCAT('%', :name, '%')) OR " +
+		       "LOWER(u.username) LIKE LOWER(CONCAT('%', :name, '%')) OR " +
+		       "LOWER(CONCAT(u.fname, ' ', u.lname)) LIKE LOWER(CONCAT('%', :name, '%'))" +
+		       ") AND u.userId NOT IN :excludeIds")
+	public List<User> searchUsersByNameExcludingIds(String name, List<UUID> excludeIds);
+	
+	public boolean existsByUsername(String username);
 
 }

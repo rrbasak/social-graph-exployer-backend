@@ -38,6 +38,7 @@ public class SecurityConfig {
         	 .requestMatchers("/api/v0/users/get/**").permitAll()
              .requestMatchers("/api/v0/auth/**").permitAll()
              .requestMatchers("/api/v0/users/search").permitAll()
+             .requestMatchers("/api/v0/users/check-username").permitAll()
              .requestMatchers("/api/v0/users/searchByName").permitAll()
              .requestMatchers("/api/v0/users/create").permitAll()
              .anyRequest().authenticated()

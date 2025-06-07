@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.socialgraph.user_service.dto.requests.UserUpdateRequest;
 import com.socialgraph.user_service.dto.responses.PublicUserResponse;
+import com.socialgraph.user_service.model.ConnectionWithUserDTO;
 import com.socialgraph.user_service.model.User;
 import com.socialgraph.user_service.model.UserInterest;
 import com.socialgraph.user_service.serviceImpl.UserServiceImpl;
@@ -34,8 +35,12 @@ public class UserController {
 	UserServiceImpl userService;
 
 	@PostMapping("/create")
-	public ResponseEntity<User> createUser(@RequestBody User user) {
-		return ResponseEntity.ok(userService.createUser(user));
+	public ResponseEntity<?> createUser(@RequestBody User user) {
+		try {
+			return ResponseEntity.ok(userService.createUser(user));
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", e.getMessage()));
+		}
 	}
 
 	@GetMapping("/get")
@@ -50,13 +55,20 @@ public class UserController {
 		return ResponseEntity.ok(userService.getUserById(id));
 	}
 
+	@GetMapping("/get/search/{currentUserId}/{targetUserId}")
+//	@PreAuthorize("isAuthenticated()")
+	public ResponseEntity<ConnectionWithUserDTO> getSearchUserById(@PathVariable UUID currentUserId,
+			@PathVariable UUID targetUserId) {
+		return ResponseEntity.ok(userService.getSearchUserById(currentUserId, targetUserId));
+	}
+
 	@GetMapping("/public/get/{id}")
-    public ResponseEntity<PublicUserResponse> getPublicById(@PathVariable UUID id) {
-    	User user = userService.getUserById(id);
-        return ResponseEntity.ok(new PublicUserResponse(
-            user.getUserId(), user.getFname(),user.getLname(), user.getUsername(), user.getProfilePicture(),user.getBio(),user.getCoverPhoto(),user.getGender(),user.getInterests()
-        ));
-    }
+	public ResponseEntity<PublicUserResponse> getPublicById(@PathVariable UUID id) {
+		User user = userService.getUserById(id);
+		return ResponseEntity.ok(new PublicUserResponse(user.getUserId(), user.getFname(), user.getLname(),
+				user.getUsername(), user.getProfilePicture(), user.getBio(), user.getCoverPhoto(), user.getGender(),
+				user.getInterests()));
+	}
 
 	@DeleteMapping("/delete/{id}")
 	@PreAuthorize("isAuthenticated()")
@@ -85,4 +97,9 @@ public class UserController {
 		return userService.searchUsers(name, excludeIds);
 	}
 
+	@GetMapping("/check-username")
+	public ResponseEntity<Boolean> checkUsernameAvailability(@RequestParam String username) {
+		boolean isAvailable = userService.isUsernameAvailable(username);
+		return ResponseEntity.ok(isAvailable);
+	}
 }

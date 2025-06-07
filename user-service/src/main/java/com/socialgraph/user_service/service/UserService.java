@@ -10,4 +10,5 @@ public interface UserService {
     User getUserById(UUID id);
     User updateUser(UUID userId, UserUpdateRequest updateRequest);
     List<User> searchUsers(String name, List<UUID> excludeIds);
+    boolean isUsernameAvailable(String username);
 }
