@@ -1,5 +1,5 @@
 # Use official OpenJDK 17 image
-FROM maven:3.9.5-openjdk-17 as build
+FROM maven:3.9.6-eclipse-temurin-17 as build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
