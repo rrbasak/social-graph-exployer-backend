@@ -1,14 +1,32 @@
+#spring:
+#  application:
+#    name: graph-service
+#  banner:
+#    location: classpath:banner.txt
+#
+#  neo4j:
+#    uri: bolt://localhost:7687
+#    authentication:
+#      username: neo4j
+#      password: 12345678
+#
+#server:
+#  port: 9002
+
+
+
+server:
+  port: ${PORT:9002}
+
 spring:
   application:
     name: graph-service
+
   banner:
     location: classpath:banner.txt
 
   neo4j:
-    uri: bolt://localhost:7687
+    uri: ${NEO4J_URI}
     authentication:
-      username: neo4j
-      password: 12345678
-
-server:
-  port: 9002
+      username: ${NEO4J_USERNAME}
+      password: ${NEO4J_PASSWORD}
