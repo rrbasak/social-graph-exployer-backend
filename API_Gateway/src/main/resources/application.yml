@@ -1,52 +1,99 @@
-server:
-  port: 9003 
+#server:
+#  port: ${PORT:9003}
+#
+#
+#spring:
+#  application:
+#    name : API_Gateway
+#  cloud:
+#    gateway:
+#      routes:
+#      
+#        - id: USER-SERVICE-USERS
+#          uri: 
+#            lb://USER-SERVICE
+##          uri: http://localhost:9000/
+#          predicates:
+#            - Path=/api/v0/users/**
+#          
+#        - id: USER-SERVICE-AUTH
+#          uri:
+#            lb://USER-SERVICE
+##          uri: http://localhost:9000/
+#          predicates:
+#            - Path=/api/v0/auth/**
+#          
+#          
+#        - id: CONNECTION-SERVICE
+#          uri: http://localhost:9001/
+##            lb://CONNECTION-SERVICE
+#          predicates:
+#            - Path=/api/v0/connection/**
+#    
+#        - id: GRAPH-SERVICE
+#          uri: http://localhost:9002/ 
+##            lb://GRAPH-SERVICE
+#          predicates:
+#            - Path=/api/v0/graph/**
+#    
+#
+#  banner:
+#    location: classpath:banner.txt
+#    
+#discovery:
+#   locator:
+#      enabled: true
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: https://social-graph-exployer-backend-eureka.onrender.com/eureka/
+#  
+#    
+# 
 
+
+
+
+
+
+server:
+  port: ${PORT:9003}
 
 spring:
   application:
-    name : API_Gateway
+    name: API_Gateway
+
   cloud:
     gateway:
       routes:
-      
         - id: USER-SERVICE-USERS
-          uri: 
-            lb://USER-SERVICE
-#          uri: http://localhost:9000/
+          uri: lb://USER-SERVICE
           predicates:
             - Path=/api/v0/users/**
-          
+
         - id: USER-SERVICE-AUTH
-          uri:
-            lb://USER-SERVICE
-#          uri: http://localhost:9000/
+          uri: lb://USER-SERVICE
           predicates:
             - Path=/api/v0/auth/**
-          
-          
+
         - id: CONNECTION-SERVICE
-          uri: http://localhost:9001/
-#            lb://CONNECTION-SERVICE
+          uri: lb://CONNECTION-SERVICE
           predicates:
             - Path=/api/v0/connection/**
-    
+
         - id: GRAPH-SERVICE
-          uri: http://localhost:9002/ 
-#            lb://GRAPH-SERVICE
+          uri: lb://GRAPH-SERVICE
           predicates:
             - Path=/api/v0/graph/**
-    
 
   banner:
     location: classpath:banner.txt
-    
+
 discovery:
-   locator:
-      enabled: true
+  locator:
+    enabled: true
+
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
-  
-    
- 
+      defaultZone: https://social-graph-exployer-backend-eureka.onrender.com/eureka/
