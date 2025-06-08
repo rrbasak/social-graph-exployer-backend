@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "connections", schema = "connections",
+@Table(name = "connections",
        uniqueConstraints = @UniqueConstraint(columnNames = {"requester_id", "receiver_id"}))
 @Data
 @NoArgsConstructor
