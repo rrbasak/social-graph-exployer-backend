@@ -1,15 +1,58 @@
+#spring:
+#  application:
+#    name: user-service
+#
+#  banner:
+#    location: classpath:banner.txt
+#    
+#
+#  datasource:
+#    url: jdbc:postgresql://localhost:5433/user_db
+#    username: postgres
+#    password: root
+#    driver-class-name: org.postgresql.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#  security:
+#    user:
+#      name: admin  
+#      password: admin
+#jwt:
+#   secret: ZHVtbXktc2VjcmV0LWtleS0xMjM0NTY3ODkwMTIzNDU2
+#   expiration: 3600000 # 1 hour in milliseconds (1000 * 60 * 60)
+#   refreshExpiration: 604800000 # 7 days
+#
+#server:
+#  port : 9000
+#  
+#  
+##graph:
+##  service:
+##    url : http://GRAPH-SERVICE/api/v0/graph/create
+
+
+
+
+
+
 spring:
   application:
     name: user-service
 
   banner:
     location: classpath:banner.txt
-    
 
   datasource:
-    url: jdbc:postgresql://localhost:5433/user_db
-    username: postgres
-    password: root
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -20,19 +63,16 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
   security:
     user:
-      name: admin  
-      password: admin
+      name: ${ADMIN_USERNAME}
+      password: ${ADMIN_PASSWORD}
+
 jwt:
-   secret: ZHVtbXktc2VjcmV0LWtleS0xMjM0NTY3ODkwMTIzNDU2
-   expiration: 3600000 # 1 hour in milliseconds (1000 * 60 * 60)
-   refreshExpiration: 604800000 # 7 days
+  secret: ${JWT_SECRET}
+  expiration: 3600000
+  refreshExpiration: 604800000
 
 server:
-  port : 9000
-  
-  
-#graph:
-#  service:
-#    url : http://GRAPH-SERVICE/api/v0/graph/create
+  port : ${PORT:9000}  
