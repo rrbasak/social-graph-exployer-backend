@@ -82,4 +82,5 @@ eureka:
 
 
 server:
-  port : ${PORT:9000}  
+  port: ${PORT:9000}
+

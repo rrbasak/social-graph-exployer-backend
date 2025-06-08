@@ -30,3 +30,9 @@ spring:
     authentication:
       username: ${NEO4J_USERNAME}
       password: ${NEO4J_PASSWORD}
+      
+      
+eureka:
+  client:
+    service-url:
+      defaultZone: https://social-graph-exployer-backend-eureka.onrender.com/eureka/      
