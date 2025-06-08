@@ -11,12 +11,12 @@ import java.util.*;
 public interface UserRepository extends JpaRepository<User, UUID> {
 	public Optional<User> findByUsername(String username);
 
-	@Query(value = "SELECT * FROM users.users " + "WHERE (LOWER(fname) LIKE LOWER(CONCAT('%', :query, '%')) "
+	@Query(value = "SELECT * FROM users " + "WHERE (LOWER(fname) LIKE LOWER(CONCAT('%', :query, '%')) "
 			+ "OR LOWER(lname) LIKE LOWER(CONCAT('%', :query, '%'))) "
 			+ "AND user_id != :currentUserId", nativeQuery = true)
 	List<User> searchUsersByName(@Param("query") String query, @Param("currentUserId") UUID userId);
 
-	@Query("SELECT u FROM User u WHERE " +
+	@Query("SELECT u FROM user u WHERE " +
 		       "(" +
 		       "LOWER(u.fname) LIKE LOWER(CONCAT('%', :name, '%')) OR " +
 		       "LOWER(u.lname) LIKE LOWER(CONCAT('%', :name, '%')) OR " +

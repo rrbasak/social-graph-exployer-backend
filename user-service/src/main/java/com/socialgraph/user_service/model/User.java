@@ -15,7 +15,7 @@ import java.util.UUID;
 import jakarta.persistence.CascadeType;
 
 @Entity
-@Table(name = "users", schema = "users")
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -62,7 +62,7 @@ public class User {
 	
 	@ElementCollection
 	@Column(name = "interests")
-	@CollectionTable(name = "user_interests", joinColumns = @JoinColumn(name = "user_id"), schema = "users")
+	@CollectionTable(name = "user_interests", joinColumns = @JoinColumn(name = "user_id"))
 //	@Cascade(CascadeType.ALL)
 	private List<String> interests;
 
