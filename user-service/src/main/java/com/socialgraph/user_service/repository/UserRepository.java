@@ -16,7 +16,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 			+ "AND user_id != :currentUserId", nativeQuery = true)
 	List<User> searchUsersByName(@Param("query") String query, @Param("currentUserId") UUID userId);
 
-	@Query("SELECT u FROM user u WHERE " +
+	@Query("SELECT u FROM User u WHERE " +
 		       "(" +
 		       "LOWER(u.fname) LIKE LOWER(CONCAT('%', :name, '%')) OR " +
 		       "LOWER(u.lname) LIKE LOWER(CONCAT('%', :name, '%')) OR " +
