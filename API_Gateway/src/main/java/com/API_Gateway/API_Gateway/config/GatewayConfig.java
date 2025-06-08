@@ -13,6 +13,7 @@ public class GatewayConfig {
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOrigin("http://localhost:5173"); 
+        config.addAllowedOrigin("https://sociel-graph-exployer-frontend.vercel.app"); 
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         config.setAllowCredentials(true);
