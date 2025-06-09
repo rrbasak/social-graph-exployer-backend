@@ -20,7 +20,7 @@ server:
 
 spring:
   application:
-    name: graph-service
+    name: GRAPH-SERVICE
 
   banner:
     location: classpath:banner.txt

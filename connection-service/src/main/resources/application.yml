@@ -32,7 +32,7 @@
 
 spring:
   application:
-    name: connection-service
+    name: CONNECTION-SERVICE
 
   banner:
     location: classpath:banner.txt

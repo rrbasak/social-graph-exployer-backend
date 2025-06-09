@@ -44,7 +44,7 @@
 
 spring:
   application:
-    name: user-service
+    name: USER-SERVICE
 
   banner:
     location: classpath:banner.txt
