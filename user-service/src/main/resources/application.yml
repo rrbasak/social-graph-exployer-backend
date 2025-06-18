@@ -79,6 +79,8 @@ eureka:
   client:
     service-url:
       defaultZone: https://social-graph-exployer-backend-eureka.onrender.com/eureka/
+    register-with-eureka: true
+    fetch-registry: true  
 
 
 server:
