@@ -80,7 +80,12 @@ eureka:
     service-url:
       defaultZone: https://social-graph-exployer-backend-eureka.onrender.com/eureka/
     register-with-eureka: true
-    fetch-registry: true  
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    hostname: https://social-graph-exployer-backend-user.onrender.com
+    non-secure-port-enabled: true
+    instance-id: USER-SERVICE  
 
 
 server:

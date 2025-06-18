@@ -99,3 +99,8 @@ eureka:
       defaultZone: https://social-graph-exployer-backend-eureka.onrender.com/eureka/
     register-with-eureka: true
     fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    hostname: https://social-graph-exployer-backend-api-gateway.onrender.com
+    non-secure-port-enabled: true
+    instance-id: API_Gateway 
