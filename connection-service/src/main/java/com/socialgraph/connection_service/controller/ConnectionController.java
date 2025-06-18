@@ -18,7 +18,7 @@ import java.util.*;
 @RequestMapping("/api/v0/connection")
 public class ConnectionController {
 
-	@Autowired
+	@Autowired 
 	ConnectionServiceImpl connectionService;
 
 	@PostMapping("/send")
