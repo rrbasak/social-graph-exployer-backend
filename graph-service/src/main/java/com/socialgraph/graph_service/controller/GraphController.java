@@ -65,4 +65,8 @@ public class GraphController {
         graphService.deleteUserNode(id);
         return ResponseEntity.ok("Node deleted");
     }
+    @GetMapping("/check")
+    public ResponseEntity<String> check() {
+        return ResponseEntity.ok("Graph service is up");
+    }
 }

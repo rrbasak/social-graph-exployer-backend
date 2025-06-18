@@ -102,4 +102,9 @@ public class UserController {
 		boolean isAvailable = userService.isUsernameAvailable(username);
 		return ResponseEntity.ok(isAvailable);
 	}
+	
+	@GetMapping("/check")
+    public ResponseEntity<String> check() {
+        return ResponseEntity.ok("User service is up");
+    }
 }

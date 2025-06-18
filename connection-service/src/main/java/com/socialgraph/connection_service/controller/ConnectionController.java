@@ -32,6 +32,10 @@ public class ConnectionController {
 		String message = connectionService.acceptRequest(request.getRequesterId(), request.getReceiverId());
 		return ResponseEntity.ok(new ConnectionResponse(message, true));
 	}
+	@GetMapping("/check")
+    public ResponseEntity<String> check() {
+        return ResponseEntity.ok("Connection service is up");
+    }
 
 	@PostMapping("/reject")
 	public ResponseEntity<ConnectionResponse> rejectRequest(@RequestBody ConnectionRequest request) {
